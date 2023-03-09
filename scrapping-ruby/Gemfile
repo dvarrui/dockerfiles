@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+source "https://rubygems.org"
+
+# Specify your gem's dependencies
+# gemspec
+
+gem "rake", "~> 13.0"
+gem "test-unit", "~> 3.5"
+gem "standard", "~> 1.23"
+
+# Windows OS requires ffi gem
+# gem "ffi"
+gem "selenium-webdriver"
+
+gem "nokogiri"
+gem "colorize"
+gem "thor"
+gem "tty-config"
+gem "tty-progressbar"

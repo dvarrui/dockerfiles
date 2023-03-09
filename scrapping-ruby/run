@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+DOCKER_IMAGE=dvarrui/scrapping-ruby
+
+build_docker() {
+  download_geckodriver
+  echo "==> Building docker image: $DOCKER_IMAGE"
+  docker build -t $DOCKER_IMAGE .
+}
+
+clean_temp() {
+  echo "==> Removing temp files"
+  rm temp/*
+}
+
+download_geckodriver() {
+  GECKO_VERSION="v0.31.0"
+  TARFILE=geckodriver-$GECKO_VERSION-linux64.tar.gz
+  TEMP=temp
+
+  echo "==> setup: Downloading geckodriver..."
+  mkdir $TEMP
+  wget https://github.com/mozilla/geckodriver/releases/download/$GECKO_VERSION/$TARFILE
+  mv $TARFILE $TEMP
+
+  echo "==> setup: Extracting tar..."
+  tar xvfz $TEMP/$TARFILE -C $TEMP
+}
+
+run_docker() {
+  docker run -it --rm --name "test" -v "$PWD":/opt -w /opt $DOCKER_IMAGE
+}
+
+
+start_service() {
+  echo "==> Starting docker service..."
+  sudo systemctl start docker
+  systemctl is-active docker
+}
+
+show_help() {
+  echo "Usage: $0 [FUNCTION]"
+  echo ""
+  echo "build    Build docker image"
+  echo "clean    Remove temp files"
+  echo "docker   Get into docker container"
+  echo "start    Start docker service"
+}
+
+show_help() {
+  echo "Usage: $0 [FUNCTION]"
+  echo ""
+  echo "build    Build docker image"
+  echo "clean    Remove temp files"
+  echo "docker   Get into docker container"
+  echo "start    Start docker service"
+  echo "setup    Download geckodriver"
+}
+
+case $1 in
+  "build" )
+     build_docker;;
+  "clean" )
+     clean_temp;;
+  "docker" )
+     run_docker $2 $3;;
+  "start" )
+     start_service;;
+  "setup" )
+     download_geckodriver;;
+  *)
+     show_help;;
+esac
