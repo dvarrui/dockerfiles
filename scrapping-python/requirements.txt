@@ -1,10 +1,11 @@
-pyyaml
-prettyconf
-selenium==3.141.0
-requests
-pandas
-lxml
 beautifulsoup4
 logzero
+lxml
+pandas
+prettyconf
+pytest
+pyyaml
+requests
+selenium==3.141.0
 typer
 user_agent
