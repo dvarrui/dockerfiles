@@ -1,10 +1,11 @@
-FROM python:3.10-buster
+FROM opensuse/tumbleweed
 
-MAINTAINER dvarrui 1.0
+MAINTAINER dvarrui 2.0
 
-RUN apt update -y
-RUN apt install -y apt-utils
-RUN apt install -y firefox-esr
+RUN zypper refresh
+RUN zypper in -y python311
+RUN zypper in -y python311-pip
+RUN zypper in -y MozillaFirefox
 
 RUN pip install --upgrade pip
 COPY requirements.txt .
@@ -13,4 +14,4 @@ RUN pip install -r ./requirements.txt
 COPY temp/geckodriver /usr/local/bin
 RUN chmod +x /usr/local/bin/geckodriver
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]

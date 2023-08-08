@@ -1,11 +1,23 @@
+#
+# urllib3:  user-friendly HTTP client for Python
+#           Required-by: requests, selenium
+#           venv with urllib3 2.0.4   (Before 20230731)
+#           venv with urllib3 1.26.12 (Now)
+#
+# selenium:
+#           Requires: certifi, trio, trio-websocket, urllib3
+#           venv selenium==3.141.0 (Before 20230807)
+#           venv selenium==4.11.12 (Now)
+#
+urllib3==1.26.12
+
+pyyaml
+prettyconf
+selenium==4.11.2
+requests
+pandas
+lxml
 beautifulsoup4
 logzero
-lxml
-pandas
-prettyconf
-pytest
-pyyaml
-requests
-selenium==3.141.0
 typer
 user_agent
