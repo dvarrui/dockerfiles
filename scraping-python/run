@@ -38,7 +38,7 @@ start_service() {
 }
 
 run_test() {
-  docker run -it --rm --name "test" -v "$PWD":/opt -w /opt "opensuse/tumbleweed"
+  docker run -it --rm --name "test" -v "$PWD":/opt -w /opt $1
 }
 
 show_help() {
@@ -48,7 +48,7 @@ show_help() {
   echo "clean    Remove temp files"
   echo "docker   Get into docker container"
   echo "start    Start docker service"
-  echo "test     Get into test docker container"
+  echo "test     Get into test docker container (IMAGE_NAME)"
   echo "setup    Download geckodriver"
 }
 
@@ -64,7 +64,7 @@ case $1 in
   "setup" )
      download_geckodriver;;
   "test" )
-     run_test;;
+     run_test $2;;
   *)
      show_help;;
 esac
