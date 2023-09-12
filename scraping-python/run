@@ -37,6 +37,10 @@ start_service() {
   systemctl is-active docker
 }
 
+run_test() {
+  docker run -it --rm --name "test" -v "$PWD":/opt -w /opt "opensuse/tumbleweed"
+}
+
 show_help() {
   echo "Usage: $0 [FUNCTION]"
   echo ""
@@ -44,6 +48,7 @@ show_help() {
   echo "clean    Remove temp files"
   echo "docker   Get into docker container"
   echo "start    Start docker service"
+  echo "test     Get into test docker container"
   echo "setup    Download geckodriver"
 }
 
@@ -58,6 +63,8 @@ case $1 in
      start_service;;
   "setup" )
      download_geckodriver;;
+  "test" )
+     run_test;;
   *)
      show_help;;
 esac
