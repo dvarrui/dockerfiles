@@ -19,5 +19,6 @@ pandas
 lxml
 beautifulsoup4
 logzero
+tqdm
 typer
 user_agent
